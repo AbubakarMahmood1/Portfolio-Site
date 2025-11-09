@@ -1,0 +1,61 @@
+---
+import ProjectCard from './ProjectCard.astro';
+
+const projects = [
+  {
+    title: "BLE Mesh Chat App",
+    description: "Real-time peer-to-peer messaging app using Bluetooth Low Energy mesh networking for offline communication.",
+    image: "/projects/ble-mesh.jpg",
+    tech: ["React Native", "BLE", "TypeScript", "Redux"],
+    githubUrl: "https://github.com/AbubakarMahmood1/ble-mesh-chat",
+    demoUrl: "",
+    challenge: "Building reliable mesh networking on mobile devices with varying Bluetooth capabilities and maintaining message delivery across disconnected nodes.",
+    solution: "Implemented custom flooding algorithm with message deduplication, node discovery protocol, and persistent queue for offline message relay. Achieved 95% delivery rate within 3-hop network."
+  },
+  {
+    title: "ASP.NET Inventory System",
+    description: "Enterprise inventory management system with real-time stock tracking, automated reordering, and role-based access control.",
+    image: "/projects/inventory-system.jpg",
+    tech: ["ASP.NET Core", "C#", "PostgreSQL", "Entity Framework"],
+    githubUrl: "https://github.com/AbubakarMahmood1/inventory-system",
+    demoUrl: "https://inventory-demo.example.com",
+    challenge: "Handling concurrent inventory updates from multiple warehouses while preventing overselling and maintaining data consistency.",
+    solution: "Designed distributed locking mechanism with PostgreSQL advisory locks, implemented CQRS pattern for read/write separation, and added event sourcing for full audit trail."
+  },
+  {
+    title: "Next.js Activity Tracker",
+    description: "Personal productivity tracker with habit streaks, goal setting, and analytics dashboard built with modern React patterns.",
+    image: "/projects/tracker.jpg",
+    tech: ["Next.js 14", "TypeScript", "Prisma", "TailwindCSS"],
+    githubUrl: "https://github.com/AbubakarMahmood1/activity-tracker",
+    demoUrl: "https://tracker-demo.vercel.app",
+    challenge: "Creating responsive real-time charts and maintaining performant infinite scroll with large datasets while ensuring sub-200ms page loads.",
+    solution: "Leveraged React Server Components for initial data fetch, implemented virtual scrolling for activity lists, and used Chart.js with canvas rendering for 60fps chart updates."
+  },
+  {
+    title: "Go Rate Limiter",
+    description: "High-performance distributed rate limiting library using Redis with support for sliding window and token bucket algorithms.",
+    image: "/projects/rate-limiter.jpg",
+    tech: ["Go", "Redis", "Docker", "Prometheus"],
+    githubUrl: "https://github.com/AbubakarMahmood1/go-rate-limiter",
+    demoUrl: "",
+    challenge: "Achieving <1ms latency for rate limit checks at 100k+ requests/second while maintaining accuracy across distributed instances.",
+    solution: "Built Lua script-based atomic operations in Redis, implemented local cache with write-through strategy, and used consistent hashing for horizontal scaling. Benchmarked at 850k ops/sec."
+  }
+];
+---
+
+<section id="projects" class="py-20 px-4 bg-gray-50 dark:bg-gray-950">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-4xl font-bold mb-4 text-center">Featured Projects</h2>
+    <p class="text-gray-600 dark:text-gray-400 text-center mb-12 max-w-2xl mx-auto">
+      A selection of projects showcasing full-stack development, system design, and problem-solving skills.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      {projects.map((project) => (
+        <ProjectCard {...project} />
+      ))}
+    </div>
+  </div>
+</section>
