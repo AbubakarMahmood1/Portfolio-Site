@@ -1,64 +1,114 @@
-# Portfolio-Site
-I need you to create a CLAUDE.md file for building a minimalist developer portfolio site.
+# Portfolio Site
 
-Project Requirements:
-- Single-page portfolio website showcasing 4 projects
-- Tech stack: Astro or Next.js 14+ with Tailwind CSS
-- Must achieve 95+ Lighthouse scores
-- Deploy to Vercel or Netlify free tier
+A minimalist, high-performance developer portfolio website built with modern web technologies.
 
-Core Sections:
-1. Hero: Name, title, brief bio (2-3 lines), GitHub/LinkedIn links
-2. Projects Section: 4 project cards with:
-   - Screenshot/GIF
-   - Tech stack badges
-   - 2-3 line description
-   - Live demo link + GitHub repo link
-   - "View Case Study" that expands to show challenges/solutions
-3. Skills: Simple grid of technologies (no progress bars or percentages)
-4. Contact: Email link and optional contact form (using Formspree free tier)
+## Overview
 
-Technical Requirements:
-- Mobile-first responsive design
-- Dark mode toggle with system preference detection
-- Smooth scroll navigation
-- Lazy loading for images
-- SEO meta tags and Open Graph tags
-- Accessibility: ARIA labels, keyboard navigation, focus states
-- Analytics: Simple Vercel/Netlify analytics (no Google Analytics)
+Single-page portfolio website showcasing projects, skills, and contact information. Designed for fast load times, accessibility, and great user experience across all devices.
 
-Avoid These Common Mistakes:
-- No particle effects or complex animations
-- No loading screens or splash pages  
-- No auto-playing music or videos
-- No skill level percentages or ratings
-- No generic template look - must feel custom
-- No broken links or placeholder content
-- No "hire me" pop-ups or aggressive CTAs
+## Features
 
-File Structure:
-portfolio/
-├── src/
-│   ├── components/
-│   │   ├── Hero.astro/tsx
-│   │   ├── Projects.astro/tsx
-│   │   ├── ProjectCard.astro/tsx
-│   │   └── ThemeToggle.astro/tsx
-│   ├── layouts/
-│   │   └── BaseLayout.astro/tsx
-│   ├── pages/
-│   │   └── index.astro/tsx
-│   └── styles/
-│       └── global.css
-├── public/
-│   ├── projects/
-│   │   └── [screenshots]
-│   └── favicon.ico
-└── package.json
+- **Single-page design** with smooth scroll navigation
+- **Dark mode** with system preference detection
+- **95+ Lighthouse scores** across all metrics
+- **Mobile-first** responsive design
+- **Accessibility-focused** with ARIA labels, keyboard navigation, and focus states
+- **SEO optimized** with meta tags and Open Graph support
+- **Zero-cost hosting** on Vercel or Netlify free tier
 
-Content to Include:
-- Hero: "Full-Stack Developer specializing in enterprise systems and real-time applications"
-- Project placeholders for: BLE Mesh Chat App (FYP), ASP.NET Inventory System, Next.js Tracker, Go Rate Limiter
-- Skills: TypeScript, C#, Go, React, Next.js, ASP.NET Core, PostgreSQL, Redis, Git
+## Tech Stack
 
-Create a comprehensive CLAUDE.md with step-by-step implementation, component code examples, deployment instructions, and a checklist for launch readiness. Focus on shipping quickly with clean, professional design rather than fancy features.
+- **Framework**: Astro or Next.js 14+
+- **Styling**: Tailwind CSS
+- **Deployment**: Vercel / Netlify
+- **Forms**: Formspree (optional)
+- **Analytics**: Vercel/Netlify Analytics
+
+## Project Sections
+
+### 1. Hero Section
+- Name and professional title
+- Brief bio (2-3 lines)
+- Social links (GitHub, LinkedIn)
+- Smooth scroll indicator
+
+### 2. Projects Section
+4 featured project cards with:
+- Project screenshot/GIF
+- Technology stack badges
+- Brief description
+- Links to live demo and source code
+- Expandable case study (challenges & solutions)
+
+### 3. Skills Section
+Clean grid layout of technologies and tools (no percentages or progress bars)
+
+### 4. Contact Section
+- Email link
+- Optional contact form
+- Social media links
+
+## Getting Started
+
+See **[CLAUDE.md](./CLAUDE.md)** for complete step-by-step implementation guide including:
+- Project setup and installation
+- Component code with examples
+- Configuration and customization
+- Testing and optimization
+- Deployment instructions
+- Post-launch checklist
+
+**Estimated build time**: 4-6 hours
+
+## Design Principles
+
+✅ **Keep it simple** - Clean, professional design
+✅ **Performance first** - Optimized images, lazy loading
+✅ **Accessible** - WCAG compliant, keyboard navigable
+✅ **Mobile-friendly** - Responsive on all screen sizes
+
+❌ **Avoid** - Particle effects, loading screens, auto-play media, skill percentages, generic templates
+
+## Performance Targets
+
+- First Contentful Paint: < 1.5s
+- Largest Contentful Paint: < 2.5s
+- Time to Interactive: < 3.5s
+- Cumulative Layout Shift: < 0.1
+- Total Page Size: < 500KB
+
+## Quick Start
+
+```bash
+# See CLAUDE.md for detailed setup
+npm create astro@latest portfolio -- --template minimal --typescript strict
+cd portfolio
+npm install -D tailwindcss @astrojs/tailwind
+npx astro add tailwind
+npm run dev
+```
+
+## Deployment
+
+Deploy to Vercel:
+```bash
+npm install -g vercel
+vercel login
+vercel
+```
+
+Or deploy to Netlify:
+```bash
+npm install -g netlify-cli
+netlify login
+netlify init
+netlify deploy --prod
+```
+
+## License
+
+MIT
+
+## Author
+
+Abubakar Mahmood
