@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SlideNav from '../components/SlideNav.astro';
 import Hero from '../components/Hero.astro';
 import Projects from '../components/Projects.astro';
 import Skills from '../components/Skills.astro';
@@ -10,14 +11,20 @@ import Contact from '../components/Contact.astro';
   title="Abubakar Mahmood - Full-Stack Developer"
   description="Full-Stack Developer specializing in enterprise systems and real-time applications. Building scalable web applications with TypeScript, C#, Go, and modern frameworks."
 >
-  <main>
-    <Hero />
-    <Projects />
-    <Skills />
-    <Contact />
-  </main>
-
-  <footer class="py-8 px-4 text-center text-gray-500 dark:text-gray-400 text-sm border-t border-gray-200 dark:border-gray-800">
-    <p>© {new Date().getFullYear()} Abubakar Mahmood. Built with Astro.</p>
-  </footer>
+  <SlideNav>
+    <div class="snap-y snap-mandatory h-screen w-screen overflow-y-auto">
+      <div class="snap-start snap-always">
+        <Hero />
+      </div>
+      <div class="snap-start snap-always">
+        <Projects />
+      </div>
+      <div class="snap-start snap-always">
+        <Skills />
+      </div>
+      <div class="snap-start snap-always">
+        <Contact />
+      </div>
+    </div>
+  </SlideNav>
 </BaseLayout>

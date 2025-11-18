@@ -1,44 +1,51 @@
 ---
-const skillCategories = [
-  {
-    category: "Languages",
-    skills: ["TypeScript", "JavaScript", "C#", "Go", "Python", "SQL"]
-  },
-  {
-    category: "Frontend",
-    skills: ["React", "Next.js", "Astro", "TailwindCSS", "React Native"]
-  },
-  {
-    category: "Backend",
-    skills: ["Node.js", "ASP.NET Core", "Express", "Prisma", "Entity Framework"]
-  },
-  {
-    category: "Databases & Tools",
-    skills: ["PostgreSQL", "Redis", "MongoDB", "Docker", "Git", "Linux"]
-  }
+const skills = [
+  { cat: "lang", items: ["TypeScript", "JavaScript", "C#", "Go", "Python", "SQL"] },
+  { cat: "front", items: ["React", "Next.js", "Astro", "TailwindCSS", "React Native"] },
+  { cat: "back", items: ["Node.js", "ASP.NET Core", "Express", "Prisma", "Entity Framework"] },
+  { cat: "infra", items: ["PostgreSQL", "Redis", "MongoDB", "Docker", "Git", "Linux"] }
 ];
 ---
 
-<section id="skills" class="py-20 px-4">
-  <div class="max-w-5xl mx-auto">
-    <h2 class="text-4xl font-bold mb-12 text-center">Skills & Technologies</h2>
+<!-- SKILLS SECTION - Terminal Grid -->
+<section class="slide-section h-screen w-screen flex items-center justify-center relative px-8 md:px-16">
+  <!-- Large Section Number -->
+  <div class="absolute top-8 right-8 font-heading text-8xl md:text-[12rem] opacity-5">
+    003
+  </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-      {skillCategories.map(({ category, skills }) => (
-        <div>
-          <h3 class="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-300">{category}</h3>
-          <ul class="space-y-2">
-            {skills.map((skill) => (
-              <li class="flex items-center gap-2 text-gray-600 dark:text-gray-400">
-                <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                </svg>
-                {skill}
-              </li>
+  <div class="max-w-7xl w-full">
+    <!-- Section Header -->
+    <div class="mb-16">
+      <div class="font-body text-sm text-[var(--color-muted)] mb-4">
+        <span class="text-[var(--color-accent)]">$</span> cat ./stack.txt
+      </div>
+      <h2 class="font-heading text-5xl md:text-7xl mb-4">TECHNOLOGY<br/>STACK</h2>
+    </div>
+
+    <!-- Skills Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+      {skills.map((category) => (
+        <div class="border-l-2 border-[var(--color-accent)] pl-6">
+          <div class="font-body text-xs text-[var(--color-accent)] mb-4 uppercase tracking-widest">
+            ./{category.cat}
+          </div>
+
+          <div class="space-y-2">
+            {category.items.map((skill) => (
+              <div class="font-body text-sm font-light hover:text-[var(--color-accent)] transition-colors flex items-center gap-2">
+                <span class="text-[var(--color-muted)]">→</span>
+                <span>{skill}</span>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       ))}
+    </div>
+
+    <!-- Terminal Output Style -->
+    <div class="mt-16 font-body text-xs text-[var(--color-muted)] border-t border-[var(--color-muted)] border-opacity-20 pt-4">
+      <span class="text-[var(--color-accent)]">info:</span> stack compiled successfully
     </div>
   </div>
 </section>

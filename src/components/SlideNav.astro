@@ -1,0 +1,125 @@
+---
+// SlideNav component - Handles keyboard navigation between sections
+---
+
+<div id="slide-container" class="relative h-screen w-screen">
+  <slot />
+</div>
+
+<!-- Section Indicator -->
+<div class="fixed bottom-8 right-8 z-50 font-body text-sm">
+  <span id="current-section" class="text-[var(--color-accent)] text-2xl font-bold">01</span>
+  <span class="text-[var(--color-muted)]"> / 04</span>
+</div>
+
+<!-- Navigation Dots -->
+<div class="fixed left-8 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-4">
+  {[0, 1, 2, 3].map((i) => (
+    <button
+      class="nav-dot w-2 h-2 rounded-full bg-[var(--color-muted)] hover:bg-[var(--color-accent)] transition-all duration-300"
+      data-section={i}
+      aria-label={`Go to section ${i + 1}`}
+    />
+  ))}
+</div>
+
+<!-- Keyboard Hint -->
+<div class="fixed bottom-8 left-8 z-50 font-body text-xs text-[var(--color-muted)] flex gap-4">
+  <span>← →</span>
+  <span>1-4</span>
+  <span>ESC</span>
+</div>
+
+<script>
+  let currentSection = 0;
+  const totalSections = 4;
+
+  function updateSection(index: number) {
+    if (index < 0 || index >= totalSections) return;
+
+    currentSection = index;
+
+    // Update section indicator
+    const indicator = document.getElementById('current-section');
+    if (indicator) {
+      indicator.textContent = String(index + 1).padStart(2, '0');
+    }
+
+    // Update navigation dots
+    const dots = document.querySelectorAll('.nav-dot');
+    dots.forEach((dot, i) => {
+      if (i === index) {
+        dot.classList.add('bg-[var(--color-accent)]', 'h-8');
+        dot.classList.remove('bg-[var(--color-muted)]', 'h-2');
+      } else {
+        dot.classList.remove('bg-[var(--color-accent)]', 'h-8');
+        dot.classList.add('bg-[var(--color-muted)]', 'h-2');
+      }
+    });
+
+    // Scroll to section
+    const sections = document.querySelectorAll('.slide-section');
+    sections[index]?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    switch(e.key) {
+      case 'ArrowRight':
+      case 'ArrowDown':
+        e.preventDefault();
+        updateSection(currentSection + 1);
+        break;
+      case 'ArrowLeft':
+      case 'ArrowUp':
+        e.preventDefault();
+        updateSection(currentSection - 1);
+        break;
+      case '1':
+      case '2':
+      case '3':
+      case '4':
+        e.preventDefault();
+        updateSection(parseInt(e.key) - 1);
+        break;
+      case 'Escape':
+        e.preventDefault();
+        updateSection(0);
+        break;
+    }
+  });
+
+  // Dot navigation
+  document.querySelectorAll('.nav-dot').forEach((dot, index) => {
+    dot.addEventListener('click', () => updateSection(index));
+  });
+
+  // Mouse wheel navigation (optional)
+  let isScrolling = false;
+  document.addEventListener('wheel', (e) => {
+    if (isScrolling) return;
+    isScrolling = true;
+
+    if (e.deltaY > 0) {
+      updateSection(currentSection + 1);
+    } else {
+      updateSection(currentSection - 1);
+    }
+
+    setTimeout(() => { isScrolling = false; }, 1000);
+  }, { passive: true });
+
+  // Initialize
+  updateSection(0);
+</script>
+
+<style>
+  .nav-dot {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-dot.active {
+    background-color: var(--color-accent);
+    height: 2rem;
+  }
+</style>
