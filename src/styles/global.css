@@ -3,18 +3,69 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --color-bg: #000000;
+    --color-text: #ffffff;
+    --color-accent: #00fff2;
+    --color-muted: #666666;
+    --font-heading: 'Bricolage Grotesque', sans-serif;
+    --font-body: 'JetBrains Mono', monospace;
+  }
+
   html {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-family: var(--font-body);
+    background: var(--color-bg);
+    color: var(--color-text);
+    overflow: hidden;
+  }
+
+  body {
+    font-weight: 200;
+    letter-spacing: 0.02em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
   }
 
   /* Focus states for accessibility */
   *:focus-visible {
-    @apply outline-2 outline-offset-2 outline-blue-500;
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
+  }
+
+  /* Remove default scrolling */
+  html, body {
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Terminal cursor effect */
+  @keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+
+  .cursor-blink::after {
+    content: '_';
+    animation: blink 1s infinite;
+    color: var(--color-accent);
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .font-heading {
+    font-family: var(--font-heading);
+  }
+
+  .font-body {
+    font-family: var(--font-body);
   }
 }
