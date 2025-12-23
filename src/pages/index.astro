@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SlideNav from '../components/SlideNav.astro';
+import Hero from '../components/Hero.astro';
+import Projects from '../components/Projects.astro';
+import Skills from '../components/Skills.astro';
+import Contact from '../components/Contact.astro';
+---
+
+<BaseLayout
+  title="Abubakar Mahmood - Full-Stack Developer"
+  description="Full-Stack Developer specializing in enterprise systems and real-time applications. Building scalable web applications with TypeScript, C#, Go, and modern frameworks."
+>
+  <SlideNav>
+    <div class="snap-y snap-mandatory h-screen w-screen overflow-y-auto">
+      <div class="snap-start snap-always">
+        <Hero />
+      </div>
+      <div class="snap-start snap-always">
+        <Projects />
+      </div>
+      <div class="snap-start snap-always">
+        <Skills />
+      </div>
+      <div class="snap-start snap-always">
+        <Contact />
+      </div>
+    </div>
+  </SlideNav>
+</BaseLayout>

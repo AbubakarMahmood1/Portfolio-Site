@@ -1,0 +1,103 @@
+---
+const projects = [
+  {
+    num: "01",
+    title: "BLE Mesh Chat App",
+    description: "Real-time P2P messaging with Bluetooth mesh networking for offline communication.",
+    tech: ["React Native", "BLE", "TypeScript"],
+    githubUrl: "https://github.com/AbubakarMahmood1/ble-mesh-chat",
+    metric: "95% delivery rate"
+  },
+  {
+    num: "02",
+    title: "ASP.NET Inventory System",
+    description: "Enterprise inventory management with real-time tracking and RBAC.",
+    tech: ["ASP.NET Core", "C#", "PostgreSQL"],
+    githubUrl: "https://github.com/AbubakarMahmood1/inventory-system",
+    metric: "Multi-warehouse sync"
+  },
+  {
+    num: "03",
+    title: "Next.js Activity Tracker",
+    description: "Productivity tracker with habit streaks and analytics dashboard.",
+    tech: ["Next.js 14", "TypeScript", "Prisma"],
+    githubUrl: "https://github.com/AbubakarMahmood1/activity-tracker",
+    metric: "<200ms page loads"
+  },
+  {
+    num: "04",
+    title: "Go Rate Limiter",
+    description: "High-performance distributed rate limiting library with Redis.",
+    tech: ["Go", "Redis", "Docker"],
+    githubUrl: "https://github.com/AbubakarMahmood1/go-rate-limiter",
+    metric: "850k ops/sec"
+  }
+];
+---
+
+<!-- PROJECTS SECTION - Minimal List Layout -->
+<section class="slide-section h-screen w-screen flex items-center justify-center relative px-8 md:px-16">
+  <!-- Large Section Number -->
+  <div class="absolute top-8 right-8 font-heading text-8xl md:text-[12rem] opacity-5">
+    002
+  </div>
+
+  <div class="max-w-7xl w-full">
+    <!-- Section Header -->
+    <div class="mb-16">
+      <div class="font-body text-sm text-[var(--color-muted)] mb-4">
+        <span class="text-[var(--color-accent)]">$</span> ls -la ./projects
+      </div>
+      <h2 class="font-heading text-5xl md:text-7xl mb-4">SELECTED<br/>WORK</h2>
+    </div>
+
+    <!-- Projects List -->
+    <div class="space-y-8">
+      {projects.map((project) => (
+        <div class="group border-b border-[var(--color-muted)] border-opacity-20 pb-8 hover:border-[var(--color-accent)] transition-colors">
+          <div class="flex items-start gap-8">
+            <!-- Number -->
+            <div class="font-heading text-4xl text-[var(--color-accent)] opacity-50 w-16 flex-shrink-0">
+              {project.num}
+            </div>
+
+            <!-- Content -->
+            <div class="flex-grow">
+              <div class="flex items-start justify-between gap-4 mb-3">
+                <h3 class="font-heading text-2xl md:text-3xl group-hover:text-[var(--color-accent)] transition-colors">
+                  {project.title}
+                </h3>
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-sm font-body hover:text-[var(--color-accent)] transition-colors whitespace-nowrap"
+                >
+                  → view
+                </a>
+              </div>
+
+              <p class="text-sm font-light mb-4 text-[var(--color-muted)] max-w-2xl">
+                {project.description}
+              </p>
+
+              <div class="flex flex-wrap gap-4 items-center">
+                <!-- Tech Stack -->
+                <div class="flex gap-2 font-body text-xs">
+                  {project.tech.map((t) => (
+                    <span class="text-[var(--color-muted)]">{t}</span>
+                  ))}
+                </div>
+
+                <!-- Metric -->
+                <div class="font-body text-xs text-[var(--color-accent)] border-l border-[var(--color-accent)] pl-4">
+                  {project.metric}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

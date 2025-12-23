@@ -1,0 +1,51 @@
+---
+const skills = [
+  { cat: "lang", items: ["TypeScript", "JavaScript", "C#", "Go", "Python", "SQL"] },
+  { cat: "front", items: ["React", "Next.js", "Astro", "TailwindCSS", "React Native"] },
+  { cat: "back", items: ["Node.js", "ASP.NET Core", "Express", "Prisma", "Entity Framework"] },
+  { cat: "infra", items: ["PostgreSQL", "Redis", "MongoDB", "Docker", "Git", "Linux"] }
+];
+---
+
+<!-- SKILLS SECTION - Terminal Grid -->
+<section class="slide-section h-screen w-screen flex items-center justify-center relative px-8 md:px-16">
+  <!-- Large Section Number -->
+  <div class="absolute top-8 right-8 font-heading text-8xl md:text-[12rem] opacity-5">
+    003
+  </div>
+
+  <div class="max-w-7xl w-full">
+    <!-- Section Header -->
+    <div class="mb-16">
+      <div class="font-body text-sm text-[var(--color-muted)] mb-4">
+        <span class="text-[var(--color-accent)]">$</span> cat ./stack.txt
+      </div>
+      <h2 class="font-heading text-5xl md:text-7xl mb-4">TECHNOLOGY<br/>STACK</h2>
+    </div>
+
+    <!-- Skills Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+      {skills.map((category) => (
+        <div class="border-l-2 border-[var(--color-accent)] pl-6">
+          <div class="font-body text-xs text-[var(--color-accent)] mb-4 uppercase tracking-widest">
+            ./{category.cat}
+          </div>
+
+          <div class="space-y-2">
+            {category.items.map((skill) => (
+              <div class="font-body text-sm font-light hover:text-[var(--color-accent)] transition-colors flex items-center gap-2">
+                <span class="text-[var(--color-muted)]">→</span>
+                <span>{skill}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Terminal Output Style -->
+    <div class="mt-16 font-body text-xs text-[var(--color-muted)] border-t border-[var(--color-muted)] border-opacity-20 pt-4">
+      <span class="text-[var(--color-accent)]">info:</span> stack compiled successfully
+    </div>
+  </div>
+</section>
