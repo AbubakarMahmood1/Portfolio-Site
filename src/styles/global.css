@@ -7,9 +7,9 @@
     --color-bg: #000000;
     --color-text: #ffffff;
     --color-accent: #00fff2;
-    --color-muted: #666666;
-    --font-heading: 'Bricolage Grotesque', sans-serif;
-    --font-body: 'JetBrains Mono', monospace;
+    --color-muted: #8a8a8a;
+    --font-heading: Arial, Helvetica, sans-serif;
+    --font-body: Consolas, 'SFMono-Regular', 'Liberation Mono', Menlo, monospace;
   }
 
   html {
@@ -17,18 +17,19 @@
     background: var(--color-bg);
     color: var(--color-text);
     overflow: hidden;
+    overflow-x: hidden;
   }
 
   body {
     font-weight: 200;
-    letter-spacing: 0.02em;
+    letter-spacing: 0;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     font-weight: 800;
     line-height: 1;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
   }
 
   /* Focus states for accessibility */

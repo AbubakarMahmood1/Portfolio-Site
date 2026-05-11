@@ -2,7 +2,7 @@
 // SlideNav component - Handles keyboard navigation between sections
 ---
 
-<div id="slide-container" class="relative h-screen w-screen">
+<div id="slide-container" class="relative h-screen w-full overflow-x-hidden">
   <slot />
 </div>
 
@@ -13,7 +13,7 @@
 </div>
 
 <!-- Navigation Dots -->
-<div class="fixed left-8 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-4">
+<div class="fixed left-8 top-1/2 -translate-y-1/2 z-50 hidden sm:flex flex-col gap-4">
   {[0, 1, 2, 3].map((i) => (
     <button
       class="nav-dot w-2 h-2 rounded-full bg-[var(--color-muted)] hover:bg-[var(--color-accent)] transition-all duration-300"
@@ -24,29 +24,29 @@
 </div>
 
 <!-- Keyboard Hint -->
-<div class="fixed bottom-8 left-8 z-50 font-body text-xs text-[var(--color-muted)] flex gap-4">
+<div class="fixed bottom-8 left-8 z-50 font-body text-xs text-[var(--color-muted)] hidden sm:flex gap-4">
   <span>← →</span>
   <span>1-4</span>
   <span>ESC</span>
 </div>
 
 <script>
-  let currentSection = 0;
-  const totalSections = 4;
+  const sections = Array.from(document.querySelectorAll<HTMLElement>('.slide-section'));
+  const dots = Array.from(document.querySelectorAll<HTMLButtonElement>('.nav-dot'));
+  const scrollRoot = document.getElementById('slide-scroll');
+  let currentSection: number = 0;
+  const totalSections: number = sections.length || 4;
 
-  function updateSection(index) {
+  function setActiveSection(index: number) {
     if (index < 0 || index >= totalSections) return;
 
     currentSection = index;
 
-    // Update section indicator
     const indicator = document.getElementById('current-section');
     if (indicator) {
       indicator.textContent = String(index + 1).padStart(2, '0');
     }
 
-    // Update navigation dots
-    const dots = document.querySelectorAll('.nav-dot');
     dots.forEach((dot, i) => {
       if (i === index) {
         dot.classList.add('bg-[var(--color-accent)]', 'h-8');
@@ -56,9 +56,11 @@
         dot.classList.add('bg-[var(--color-muted)]', 'h-2');
       }
     });
+  }
 
-    // Scroll to section
-    const sections = document.querySelectorAll('.slide-section');
+  function updateSection(index: number) {
+    if (index < 0 || index >= totalSections) return;
+    setActiveSection(index);
     sections[index]?.scrollIntoView({ behavior: 'smooth' });
   }
 
@@ -80,7 +82,7 @@
       case '3':
       case '4':
         e.preventDefault();
-        updateSection(parseInt(e.key) - 1);
+        updateSection(Number.parseInt(e.key, 10) - 1);
         break;
       case 'Escape':
         e.preventDefault();
@@ -90,27 +92,29 @@
   });
 
   // Dot navigation
-  document.querySelectorAll('.nav-dot').forEach((dot, index) => {
+  dots.forEach((dot, index) => {
     dot.addEventListener('click', () => updateSection(index));
   });
 
-  // Mouse wheel navigation (optional)
-  let isScrolling = false;
-  document.addEventListener('wheel', (e) => {
-    if (isScrolling) return;
-    isScrolling = true;
+  if (scrollRoot && sections.length > 0) {
+    const observer = new IntersectionObserver((entries) => {
+      const visibleEntry = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
 
-    if (e.deltaY > 0) {
-      updateSection(currentSection + 1);
-    } else {
-      updateSection(currentSection - 1);
-    }
+      if (!visibleEntry) return;
 
-    setTimeout(() => { isScrolling = false; }, 1000);
-  }, { passive: true });
+      const visibleIndex = sections.indexOf(visibleEntry.target as HTMLElement);
+      setActiveSection(visibleIndex);
+    }, {
+      root: scrollRoot,
+      threshold: [0.35, 0.6]
+    });
 
-  // Initialize
-  updateSection(0);
+    sections.forEach((section) => observer.observe(section));
+  }
+
+  setActiveSection(0);
 </script>
 
 <style>

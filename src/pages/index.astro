@@ -8,11 +8,11 @@ import Contact from '../components/Contact.astro';
 ---
 
 <BaseLayout
-  title="Abubakar Mahmood - Full-Stack Developer"
-  description="Full-Stack Developer specializing in enterprise systems and real-time applications. Building scalable web applications with TypeScript, C#, Go, and modern frameworks."
+  title="Abubakar Mahmood - Junior Software Engineer"
+  description="Junior Software Engineer in Lahore focused on Flutter, backend APIs, offline-first systems, and practical production-minded software."
 >
   <SlideNav>
-    <div class="snap-y snap-mandatory h-screen w-screen overflow-y-auto">
+    <main id="slide-scroll" class="snap-y snap-mandatory h-screen w-full overflow-y-auto overflow-x-hidden">
       <div class="snap-start snap-always">
         <Hero />
       </div>
@@ -25,6 +25,6 @@ import Contact from '../components/Contact.astro';
       <div class="snap-start snap-always">
         <Contact />
       </div>
-    </div>
+    </main>
   </SlideNav>
 </BaseLayout>
